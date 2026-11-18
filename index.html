@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BMW O'zbekiston — Haydashdan haqiqiy zavq. Yangi BMW modellari, texnologiyalari va Test Drive xizmati.">
+    <meta name="keywords" content="BMW, BMW O'zbekiston, BMW M3, BMW M5, BMW X5, BMW X7, BMW i7, Test Drive">
+    <title>BMW — Haydashdan Haqiqiy Zavq</title>
+    
+    <!-- Google Fonts: Montserrat va Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Asosiy CSS fayli -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Xabarnoma (Toast Notification) -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Header va Navigatsiya -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="#bosh-sahifa" class="logo" aria-label="BMW Bosh sahifa">
+                <!-- BMW SVG Logotipi -->
+                <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="48" fill="#111111" stroke="#E5E5E5" stroke-width="3"/>
+                    <circle cx="50" cy="50" r="30" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+                    <path d="M50 20A30 30 0 0 1 80 50H50V20Z" fill="#0066B1"/>
+                    <path d="M50 80A30 30 0 0 1 20 50H50V80Z" fill="#0066B1"/>
+                    <text x="50" y="14" fill="#FFFFFF" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" text-anchor="middle">M</text>
+                    <text x="27" y="24" fill="#FFFFFF" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" text-anchor="middle" transform="rotate(-45 27 24)">B</text>
+                    <text x="73" y="24" fill="#FFFFFF" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" text-anchor="middle" transform="rotate(45 73 24)">W</text>
+                </svg>
+                <span>BMW</span>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Asosiy menyu">
+                <ul class="nav-list">
+                    <li><a href="#bosh-sahifa" class="nav-link active">Bosh sahifa</a></li>
+                    <li><a href="#modellar" class="nav-link">Modellar</a></li>
+                    <li><a href="#haqida" class="nav-link">BMW haqida</a></li>
+                    <li><a href="#texnologiyalar" class="nav-link">Texnologiyalar</a></li>
+                    <li><a href="#galereya" class="nav-link">Galereya</a></li>
+                    <li><a href="#aloqa" class="nav-link">Aloqa</a></li>
+                </ul>
+                <a href="#test-drive" class="btn btn-primary nav-cta">Test Drive</a>
+            </nav>
+
+            <button class="hamburger" id="hamburger" aria-label="Menyuni ochish" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="bosh-sahifa" class="hero">
+            <div class="hero-bg">
+                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1920&q=85" alt="Yangi BMW sport avtomobili" loading="eager">
+                <div class="hero-overlay"></div>
+            </div>
+            
+            <div class="container hero-content">
+                <span class="hero-subtitle reveal">MUKAMMALLIK VA INNOVATSIYA</span>
+                <h1 class="hero-title reveal">HAYDASHDAN HAQIQIY ZAVQ</h1>
+                <p class="hero-description reveal">
+                    Kelajak texnologiyalari, tengsiz dinamika va nafis nemis muhandisligi uyg‘unligi. 
+                    O‘z orzuingizdagi BMW avtomobilini kashf eting va yo‘llarda mutlaq ustunlikni his qiling.
+                </p>
+                <div class="hero-buttons reveal">
+                    <a href="#modellar" class="btn btn-primary">Modellarni ko‘rish</a>
+                    <a href="#test-drive" class="btn btn-glass">Test Drivega yozilish</a>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <span>Pastga suring</span>
+                <div class="mouse"></div>
+            </div>
+        </section>
+
+        <!-- Modellar Bo'limi -->
+        <section id="modellar" class="section models-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">AVTOMOBILLAR KATALOGI</span>
+                    <h2 class="section-title">BMW Modellari</h2>
+                    <p class="section-subtitle">Sport sedanlar, hashamatli yo‘ltanlamaslar va zamonaviy elektromobillar to‘plami</p>
+                </div>
+
+                <!-- Filter Tugmalari -->
+                <div class="filter-buttons reveal" role="group" aria-label="Modellarni saralash">
+                    <button class="filter-btn active" data-filter="barchasi">Barcha modellar</button>
+                    <button class="filter-btn" data-filter="sedan">Sedan</button>
+                    <button class="filter-btn" data-filter="suv">Yo‘ltanlamas (SUV)</button>
+                    <button class="filter-btn" data-filter="m-series">M Seriyasi</button>
+                    <button class="filter-btn" data-filter="electric">Elektromobil</button>
+                </div>
+
+                <!-- Modellar Gridi (JavaScript orqali to'ldiriladi) -->
+                <div class="models-grid" id="models-grid"></div>
+            </div>
+        </section>
+
+        <!-- BMW Haqida Bo'limi -->
+        <section id="haqida" class="section about-section">
+            <div class="container about-grid">
+                <div class="about-image reveal">
+                    <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=1000&q=80" alt="BMW dizayn va muhandislik" loading="lazy">
+                    <div class="experience-badge glass-card">
+                        <span class="number">100+</span>
+                        <span class="text">Yillik muhandislik tajribasi</span>
+                    </div>
+                </div>
+
+                <div class="about-content reveal">
+                    <span class="section-tag">BREND FALSAFASI</span>
+                    <h2 class="section-title">Innovatsiya va Hashamat Tarixi</h2>
+                    <p class="about-text">
+                        1916-yilda Myunxenda tashkil etilgan BMW (Bayerische Motoren Werke) bugungi kunda dunyoning eng nufuzli premium avtomobil ishlab chiqaruvchisidir. Biz har bir detalda haydovchi va avtomobil o‘rtasidagi uzviy bog‘liqlikni yaratamiz.
+                    </p>
+                    
+                    <div class="values-list">
+                        <div class="value-item">
+                            <div class="value-icon">01</div>
+                            <div>
+                                <h3>Dizayn Falsafasi</h3>
+                                <p>Aerodinamik mukammallik, agressiv chiziqlar va haydovchiga yo‘naltirilgan ergonomik salon.</p>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">02</div>
+                            <div>
+                                <h3>Barqaror Kelajak</h3>
+                                <p>Ekologik toza ishlab chiqarish va yangi avlod elektr harakatlanish texnologiyalari.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#texnologiyalar" class="btn btn-outline">Texnologiyalarni o‘rganish</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Texnologiyalar Bo'limi -->
+        <section id="texnologiyalar" class="section tech-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">KELAJAK BUGUN</span>
+                    <h2 class="section-title">BMW Texnologiyalari</h2>
+                    <p class="section-subtitle">Har bir safarni xavfsiz, qulay va unutilmas qiluvchi aqlli tizimlar</p>
+                </div>
+
+                <div class="tech-grid">
+                    <article class="tech-card glass-card reveal">
+                        <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=800&q=80" alt="BMW xDrive tizimi" loading="lazy">
+                        <div class="tech-info">
+                            <h3>BMW xDrive</h3>
+                            <p>Aqlli to‘liq g‘ildirakli uzatma tizimi har qanday ob-havo va yo‘l sharoitida tortish kuchini millisoniyalarda taqsimlaydi.</p>
+                        </div>
+                    </article>
+
+                    <article class="tech-card glass-card reveal">
+                        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80" alt="BMW M Performance" loading="lazy">
+                        <div class="tech-info">
+                            <h3>BMW M Performance</h3>
+                            <p>Avtosportdan ilhomlangan TwinPower Turbo dvigatellari, moslashuvchan M podveskasi va yuqori aniqlikdagi tormoz tizimi.</p>
+                        </div>
+                    </article>
+
+                    <article class="tech-card glass-card reveal">
+                        <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80" alt="BMW iDrive boshqaruv tizimi" loading="lazy">
+                        <div class="tech-info">
+                            <h3>BMW iDrive va Egri Displey</h3>
+                            <p>Ovozli boshqaruv, sun’iy intellekt va kengaytirilgan reallik (AR) navigatsiyasiga ega intellektual kokpit.</p>
+                        </div>
+                    </article>
+
+                    <article class="tech-card glass-card reveal">
+                        <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=800&q=80" alt="BMW eDrive elektromobillari" loading="lazy">
+                        <div class="tech-info">
+                            <h3>BMW eDrive Elektr Harakati</h3>
+                            <p>Nol chiqindilar, bir zumda tezlashish va bir quvvatlashda 600 kilometrgacha masofa bosib o‘tish imkoniyati.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galereya Bo'limi -->
+        <section id="galereya" class="section gallery-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">VIZUAL ESTETIKA</span>
+                    <h2 class="section-title">BMW Galereyasi</h2>
+                    <p class="section-subtitle">Har bir rakursdan mukammal ko‘rinish. Kattalashtirish uchun rasm ustiga bosing</p>
+                </div>
+
+                <div class="gallery-grid" id="gallery-grid">
+                    <div class="gallery-item reveal" data-index="0">
+                        <img src="https://images.unsplash.com/photo-1556189250-72ba954cfc2b?auto=format&fit=crop&w=900&q=80" alt="BMW M4 Coupe ko‘rinishi" loading="lazy">
+                        <div class="gallery-overlay"><span>Kattalashtirish</span></div>
+                    </div>
+                    <div class="gallery-item reveal" data-index="1">
+                        <img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?auto=format&fit=crop&w=900&q=80" alt="BMW M5 sport sedani" loading="lazy">
+                        <div class="gallery-overlay"><span>Kattalashtirish</span></div>
+                    </div>
+                    <div class="gallery-item reveal" data-index="2">
+                        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=900&q=80" alt="BMW tungi yoritish tizimi" loading="lazy">
+                        <div class="gallery-overlay"><span>Kattalashtirish</span></div>
+                    </div>
+                    <div class="gallery-item reveal" data-index="3">
+                        <img src="https://images.unsplash.com/photo-1616422285623-13ff0162193c?auto=format&fit=crop&w=900&q=80" alt="BMW X6 M Competition" loading="lazy">
+                        <div class="gallery-overlay"><span>Kattalashtirish</span></div>
+                    </div>
+                    <div class="gallery-item reveal" data-index="4">
+                        <img src="https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?auto=format&fit=crop&w=900&q=80" alt="BMW interyer hashamati" loading="lazy">
+                        <div class="gallery-overlay"><span>Kattalashtirish</span></div>
+                    </div>
+                    <div class="gallery-item reveal" data-index="5">
+                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=80" alt="BMW klassik va zamonaviy uslub" loading="lazy">
+                        <div class="gallery-overlay"><span>Kattalashtirish</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Test Drive Formasi -->
+        <section id="test-drive" class="section testdrive-section">
+            <div class="container">
+                <div class="testdrive-wrapper glass-card reveal">
+                    <div class="testdrive-info">
+                        <span class="section-tag">SHAXSIY TAJRIBA</span>
+                        <h2 class="section-title">Test Drivega Yoziling</h2>
+                        <p>
+                            O‘zingiz tanlagan BMW modelini haqiqiy yo‘lda sinab ko‘ring. Mutaxassislarimiz sizga qulay vaqtda barcha texnologiyalar bilan tanishtiradilar.
+                        </p>
+                        <ul class="testdrive-perks">
+                            <li>✓ Rasmiy dilerlik markazida shaxsiy kutib olish</li>
+                            <li>✓ Professional instruktor hamrohligi</li>
+                            <li>✓ Model bo‘yicha to‘liq texnik maslahat</li>
+                        </ul>
+                    </div>
+
+                    <form id="testdrive-form" class="custom-form" novalidate>
+                        <div class="form-group">
+                            <label for="td-name">Ism va familiyangiz *</label>
+                            <input type="text" id="td-name" placeholder="Masalan: Jasur Karimov" required>
+                            <span class="error-msg" id="td-name-error"></span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="td-phone">Telefon raqamingiz *</label>
+                                <input type="tel" id="td-phone" placeholder="+998 90 123 45 67" required>
+                                <span class="error-msg" id="td-phone-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="td-email">Elektron pochta *</label>
+                                <input type="email" id="td-email" placeholder="jasur@example.uz" required>
+                                <span class="error-msg" id="td-email-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="td-model">BMW modelini tanlang *</label>
+                                <select id="td-model" required>
+                                    <option value="">Modelni tanlang...</option>
+                                    <option value="BMW M3 Competition">BMW M3 Competition</option>
+                                    <option value="BMW M4 Coupe">BMW M4 Coupe</option>
+                                    <option value="BMW M5 CS">BMW M5 CS</option>
+                                    <option value="BMW M8 Gran Coupe">BMW M8 Gran Coupe</option>
+                                    <option value="BMW X5 M">BMW X5 M</option>
+                                    <option value="BMW X6">BMW X6</option>
+                                    <option value="BMW X7">BMW X7</option>
+                                    <option value="BMW i7">BMW i7 (Elektromobil)</option>
+                                    <option value="BMW iX">BMW iX (Elektromobil)</option>
+                                </select>
+                                <span class="error-msg" id="td-model-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="td-date">Qulay sana *</label>
+                                <input type="date" id="td-date" required>
+                                <span class="error-msg" id="td-date-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="td-note">Qo‘shimcha izoh (ixtiyoriy)</label>
+                            <textarea id="td-note" rows="3" placeholder="Qulay vaqt yoki savollaringizni yozing..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Arizani yuborish</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aloqa Bo'limi -->
+        <section id="aloqa" class="section contact-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">BIZ BILAN BOG‘LANING</span>
+                    <h2 class="section-title">Aloqa va Manzil</h2>
+                    <p class="section-subtitle">Savollaringiz bormi? Rasmiy dilerlik markazimiz sizni kutmoqda</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-details glass-card reveal">
+                        <h3>Aloqa ma’lumotlari</h3>
+                        <div class="contact-item">
+                            <strong>Manzil:</strong>
+                            <p>Toshkent shahri, Amir Temur shoh ko‘chasi, 108-uy</p>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Telefon:</strong>
+                            <p><a href="tel:+998712000000">+998 (71) 200-00-00</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Elektron pochta:</strong>
+                            <p><a href="mailto:info@bmw-uzbekistan.uz">info@bmw-uzbekistan.uz</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Ish vaqti:</strong>
+                            <p>Dushanba – Yakshanba: 09:00 dan 20:00 gacha</p>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/bmw/" target="_blank" rel="noopener" aria-label="BMW Instagram">Instagram</a>
+                            <a href="https://www.youtube.com/user/BMW" target="_blank" rel="noopener" aria-label="BMW YouTube">YouTube</a>
+                            <a href="https://t.me/" target="_blank" rel="noopener" aria-label="BMW Telegram">Telegram</a>
+                        </div>
+
+                        <!-- Xarita joyi -->
+                        <div class="map-box">
+                            <iframe 
+                                title="BMW Rasmiy Dilerlik Markazi Xaritasi"
+                                src="https://www.openstreetmap.org/export/embed.html?bbox=69.2750%2C41.3100%2C69.2950%2C41.3250&layer=mapnik" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-box glass-card reveal">
+                        <h3>Xabar qoldirish</h3>
+                        <form id="contact-form" class="custom-form" novalidate>
+                            <div class="form-group">
+                                <label for="c-name">Ismingiz *</label>
+                                <input type="text" id="c-name" placeholder="Ismingizni kiriting" required>
+                                <span class="error-msg" id="c-name-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="c-email">Elektron pochta *</label>
+                                <input type="email" id="c-email" placeholder="email@manzil.uz" required>
+                                <span class="error-msg" id="c-email-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="c-message">Xabar matni *</label>
+                                <textarea id="c-message" rows="5" placeholder="Savol yoki taklifingizni yozing..." required></textarea>
+                                <span class="error-msg" id="c-message-error"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Xabarni yuborish</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">BMW O‘ZBEKISTON</span>
+                <p>Haydashdan haqiqiy zavq. Barcha huquqlar himoyalangan.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#bosh-sahifa">Bosh sahifa</a>
+                <a href="#modellar">Modellar</a>
+                <a href="#haqida">BMW haqida</a>
+                <a href="#test-drive">Test Drive</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BMW Group. Rasmiy dilerlik markazi taqdimoti.</p>
+        </div>
+    </footer>
+
+    <!-- Yuqoriga qaytish tugmasi -->
+    <button id="scroll-top" class="scroll-top" aria-label="Sahifa yuqorisiga qaytish">↑</button>
+
+    <!-- Model Batafsil Modal Oynasi -->
+    <div id="model-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-backdrop" id="modal-backdrop"></div>
+        <div class="modal-content glass-card">
+            <button class="modal-close" id="modal-close" aria-label="Oynani yopish">&times;</button>
+            <div class="modal-body" id="modal-body">
+                <!-- JavaScript orqali to'ldiriladi -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Galereya Lightbox Oynasi -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Rasmlar galereyasi">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Galereyani yopish">&times;</button>
+        <button class="lightbox-prev" id="lightbox-prev" aria-label="Oldingi rasm">&#10094;</button>
+        <img id="lightbox-img" src="" alt="Kattalashtirilgan BMW rasmi">
+        <button class="lightbox-next" id="lightbox-next" aria-label="Keyingi rasm">&#10095;</button>
+    </div>
+
+    <!-- Asosiy JavaScript fayli -->
+    <script src="./index.js"></script>
+</body>
+</html>
